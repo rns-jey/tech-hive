@@ -1,5 +1,5 @@
-import Image from "next/image";
+import PageHeader from "@/components/organisms/page-header";
 
 export default function Home() {
-  return <main>Tech Hive</main>;
+  return <main>The Body</main>;
 }
