@@ -19,8 +19,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <PageHeader />
-        {children}
+        <div className="h-full">
+          <PageHeader />
+          {children}
+        </div>
       </body>
     </html>
   );
