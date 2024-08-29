@@ -8,6 +8,9 @@ dependencies:
   '@clerk/nextjs':
     specifier: ^5.3.6
     version: 5.3.6(next@14.2.7)(react-dom@18.3.1)(react@18.3.1)
+  '@prisma/client':
+    specifier: 5.19.0
+    version: 5.19.0(prisma@5.19.0)
   '@radix-ui/react-slot':
     specifier: ^1.1.0
     version: 1.1.0(@types/react@18.3.4)(react@18.3.1)
@@ -364,13 +367,24 @@ packages:
     requiresBuild: true
     optional: true
 
+  /@prisma/client@5.19.0(prisma@5.19.0):
+    resolution: {integrity: sha512-CzOpau+q1kEWQyoQMvlnXIHqPvwmWbh48xZ4n8KWbAql0p8PC0BIgSTYW5ncxXa4JSEff0tcoxSZB874wDstdg==}
+    engines: {node: '>=16.13'}
+    requiresBuild: true
+    peerDependencies:
+      prisma: '*'
+    peerDependenciesMeta:
+      prisma:
+        optional: true
+    dependencies:
+      prisma: 5.19.0
+    dev: false
+
   /@prisma/debug@5.19.0:
     resolution: {integrity: sha512-+b/G0ubAZlrS+JSiDhXnYV5DF/aTJ3pinktkiV/L4TtLRLZO6SVGyFELgxBsicCTWJ2ZMu5vEV/jTtYCdjFTRA==}
-    dev: true
 
   /@prisma/engines-version@5.19.0-31.5fe21811a6ba0b952a3bc71400666511fe3b902f:
     resolution: {integrity: sha512-GimI9aZIFy/yvvR11KfXRn3pliFn1QAkdebVlsXlnoh5uk0YhLblVmeYiHfsu+wDA7BeKqYT4sFfzg8mutzuWw==}
-    dev: true
 
   /@prisma/engines@5.19.0:
     resolution: {integrity: sha512-UtW+0m4HYoRSSR3LoDGKF3Ud4BSMWYlLEt4slTnuP1mI+vrV3zaDoiAPmejdAT76vCN5UqnWURbkXxf66nSylQ==}
@@ -380,7 +394,6 @@ packages:
       '@prisma/engines-version': 5.19.0-31.5fe21811a6ba0b952a3bc71400666511fe3b902f
       '@prisma/fetch-engine': 5.19.0
       '@prisma/get-platform': 5.19.0
-    dev: true
 
   /@prisma/fetch-engine@5.19.0:
     resolution: {integrity: sha512-oOiPNtmJX0cP/ebu7BBEouJvCw8T84/MFD/Hf2zlqjxkK4ojl38bB9i9J5LAxotL6WlYVThKdxc7HqoWnPOhqQ==}
@@ -388,13 +401,11 @@ packages:
       '@prisma/debug': 5.19.0
       '@prisma/engines-version': 5.19.0-31.5fe21811a6ba0b952a3bc71400666511fe3b902f
       '@prisma/get-platform': 5.19.0
-    dev: true
 
   /@prisma/get-platform@5.19.0:
     resolution: {integrity: sha512-s9DWkZKnuP4Y8uy6yZfvqQ/9X3/+2KYf3IZUVZz5OstJdGBJrBlbmIuMl81917wp5TuK/1k2TpHNCEdpYLPKmg==}
     dependencies:
       '@prisma/debug': 5.19.0
-    dev: true
 
   /@radix-ui/react-compose-refs@1.1.0(@types/react@18.3.4)(react@18.3.1):
     resolution: {integrity: sha512-b4inOtiaOnYf9KWyO3jAeeCG6FeyfY6ldiEPanbUjWd+xIk5wZeHa8yVwmrJ2vderhu/BQvzCrJI0lHd+wIiqw==}
@@ -2433,7 +2444,6 @@ packages:
       '@prisma/engines': 5.19.0
     optionalDependencies:
       fsevents: 2.3.3
-    dev: true
 
   /prop-types@15.8.1:
     resolution: {integrity: sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==}
