@@ -6,7 +6,7 @@ import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 export default function PageHeader() {
   return (
     <header className="bg-white shadow-md fixed left-0 right-0 top-0">
-      <div className="m-auto px-8 flex items-center h-14">
+      <div className="m-auto px-8 flex items-center h-14 max-w-[1440px]">
         <a href="/" className="relative h-[50px] w-[120px]">
           <Image src="/logo.png" fill objectFit="contain" alt="tech hive" />
         </a>
