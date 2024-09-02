@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Input } from "../atoms/input";
 import { Button } from "../atoms/button";
-import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from "@clerk/nextjs";
 
 export default function PageHeader() {
   return (
@@ -11,8 +11,9 @@ export default function PageHeader() {
           <Image src="/logo.png" fill objectFit="contain" alt="tech hive" />
         </a>
         <Input className="max-w-2xl mx-4 w" />
-        <div className="ml-auto space-x-6 flex justify-center">
+        <div className="ml-auto space-x-1 flex justify-center">
           <SignedIn>
+            <Button variant="outline">Create Post</Button>
             {/* Mount the UserButton component */}
             <UserButton
               appearance={{
@@ -24,8 +25,12 @@ export default function PageHeader() {
           </SignedIn>
           <SignedOut>
             {/* Signed out users get sign in button */}
-            <button>Log In</button>
-            <Button>Create account</Button>
+            <SignInButton>
+              <Button>Login</Button>
+            </SignInButton>
+            <SignUpButton>
+              <Button>Create account</Button>
+            </SignUpButton>
           </SignedOut>
         </div>
       </div>

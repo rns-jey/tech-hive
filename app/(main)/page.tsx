@@ -2,6 +2,7 @@ import { Button } from "@/components/atoms/button";
 import { Separator } from "@/components/atoms/separator";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/molecules/avatar";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/organisms/card";
+import { SignedOut, SignInButton, SignUpButton } from "@clerk/nextjs";
 
 export default function Home() {
   const posts = [
@@ -69,19 +70,37 @@ export default function Home() {
     <main className="bg-slate-50 mt-14">
       <div className="max-w-[1440px] px-8 py-4 m-auto flex space-x-4">
         {/* <div className="w-60 p-4 max-w-xs bg-white">Tech Hive is a community of 1,980,279 amazing developers</div> */}
+
         <div className="w-60">
-          <Card>
-            <CardHeader>
-              <CardTitle>Tech Hive is a community of 1,980,279 amazing developers</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p>We&apos;re a place where coders share, stay up-to-date and grow their careers.</p>
-            </CardContent>
-            <CardFooter className="flex flex-col space-y-1">
-              <Button className="w-full">Create account</Button>
-              <Button className="w-full">Login</Button>
-            </CardFooter>
-          </Card>
+          <SignedOut>
+            <Card>
+              <CardHeader>
+                <CardTitle>Tech Hive is a community of 1,980,279 amazing developers</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p>We&apos;re a place where coders share, stay up-to-date and grow their careers.</p>
+              </CardContent>
+              <CardFooter className="flex flex-col space-y-1">
+                <SignUpButton>
+                  <Button className="w-full" variant="outline">
+                    Create account
+                  </Button>
+                </SignUpButton>
+
+                <SignInButton>
+                  <Button className="w-full" variant="ghost">
+                    Login
+                  </Button>
+                </SignInButton>
+              </CardFooter>
+            </Card>
+          </SignedOut>
+          <div className="flex flex-col">
+            <div>Home</div>
+            <div>Code of Conduct</div>
+            <div>Privacy Policy</div>
+            <div>Terms of use</div>
+          </div>
         </div>
 
         <div className="flex flex-col flex-1 space-y-2">
