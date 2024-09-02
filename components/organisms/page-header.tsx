@@ -1,11 +1,20 @@
+"use client";
+
 import Image from "next/image";
 import { Input } from "../atoms/input";
 import { Button } from "../atoms/button";
 import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
 
 export default function PageHeader() {
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push("/new");
+  };
+
   return (
-    <header className="bg-white shadow-md fixed left-0 right-0 top-0">
+    <header className="bg-white shadow-md fixed left-0 right-0 top-0 z-10">
       <div className="m-auto px-8 flex items-center h-14 max-w-[1440px]">
         <a href="/" className="relative h-[50px] w-[120px]">
           <Image src="/logo.png" fill objectFit="contain" alt="tech hive" />
@@ -13,7 +22,9 @@ export default function PageHeader() {
         <Input className="max-w-2xl mx-4 w" />
         <div className="ml-auto space-x-1 flex justify-center">
           <SignedIn>
-            <Button variant="outline">Create Post</Button>
+            <Button variant="outline" onClick={() => handleClick()}>
+              Create Post
+            </Button>
             {/* Mount the UserButton component */}
             <UserButton
               appearance={{
