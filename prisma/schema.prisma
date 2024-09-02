@@ -33,6 +33,7 @@ model Post {
   title String
   content String @db.Text
   imageUrl String @db.Text
+  published Boolean
   
   createdAt DateTime @default(now())
   updatedAt  DateTime @updatedAt
