@@ -125,7 +125,9 @@ export default async function Home() {
               </Avatar>
               <CardDescription className="flex flex-col">{post.author.name}</CardDescription>
               <CardDescription className="flex flex-col">{format(new Date(post.createdAt), "MMM d")}</CardDescription>
-              <CardTitle>{post.title}</CardTitle>
+              <CardTitle>
+                <a href={`/posts/${post.id}`}>{post.title}</a>
+              </CardTitle>
             </CardHeader>
             <CardContent>{/* <p>{post.tags.join(" ")}</p> */}</CardContent>
             <CardFooter className="w-full flex gap-1">
