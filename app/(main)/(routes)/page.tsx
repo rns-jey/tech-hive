@@ -2,10 +2,18 @@ import { Button } from "@/components/atoms/button";
 import { Separator } from "@/components/atoms/separator";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/molecules/avatar";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/organisms/card";
+import { db } from "@/lib/db";
+import { PostWithAuthor } from "@/types";
 import { SignedOut, SignInButton, SignUpButton } from "@clerk/nextjs";
+import { format } from "date-fns";
 
-export default function Home() {
-  const posts = [
+export default async function Home() {
+  const posts = await db.post.findMany({
+    include: { author: true },
+    orderBy: { createdAt: "desc" },
+    take: 5,
+  });
+  const postss = [
     {
       author: "Magnus Flours",
       date: "Aug 30",
@@ -108,20 +116,18 @@ export default function Home() {
           <p>Latest</p>
           <p>Top</p>
         </div>
-        {posts.map((post, i) => (
-          <Card key={i}>
+        {posts.map((post: PostWithAuthor) => (
+          <Card key={post.id}>
             <CardHeader>
               <Avatar>
-                <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+                <AvatarImage src={post.author.imageUrl} alt="@shadcn" />
                 <AvatarFallback>CN</AvatarFallback>
               </Avatar>
-              <CardDescription className="flex flex-col">{post.author}</CardDescription>
-              <CardDescription className="flex flex-col">{post.date}</CardDescription>
+              <CardDescription className="flex flex-col">{post.author.name}</CardDescription>
+              <CardDescription className="flex flex-col">{format(new Date(post.createdAt), "MMM d")}</CardDescription>
               <CardTitle>{post.title}</CardTitle>
             </CardHeader>
-            <CardContent>
-              <p>{post.tags.join(" ")}</p>
-            </CardContent>
+            <CardContent>{/* <p>{post.tags.join(" ")}</p> */}</CardContent>
             <CardFooter className="w-full flex gap-1">
               <Button>{post.reactions} reactions</Button>
               <Button>Add Comment</Button>

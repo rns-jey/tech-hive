@@ -17,7 +17,7 @@ export async function POST(req: Request) {
         content,
         published,
         imageUrl,
-        userId: profile.id,
+        authorId: profile.id,
       },
     });
 
