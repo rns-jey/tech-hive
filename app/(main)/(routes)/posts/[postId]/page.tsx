@@ -1,7 +1,9 @@
 import { Button } from "@/components/atoms/button";
 import { Separator } from "@/components/atoms/separator";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/molecules/avatar";
+import PostComment from "@/components/molecules/post-comment";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/organisms/card";
+import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
 import { format } from "date-fns";
 import { Fragment } from "react";
@@ -13,6 +15,8 @@ interface PostIdPageProps {
 }
 
 export default async function PostIdPage({ params }: PostIdPageProps) {
+  const profile = await currentProfile();
+
   const post = await db.post.findUnique({
     where: { id: params.postId },
     include: { author: true },
@@ -50,8 +54,9 @@ export default async function PostIdPage({ params }: PostIdPageProps) {
           <p>{post.content}</p>
         </CardContent>
         <Separator className="mb-4" />
-        <CardFooter>
+        <CardFooter className="flex flex-col items-start">
           <p className="font-bold text-2xl">Top comments</p>
+          <PostComment postId={post.id} profile={profile} />
         </CardFooter>
       </Card>
       <div className="flex flex-col min-w-72 space-y-3">
