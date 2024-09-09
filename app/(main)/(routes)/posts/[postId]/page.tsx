@@ -1,6 +1,7 @@
 import { Button } from "@/components/atoms/button";
 import { Separator } from "@/components/atoms/separator";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/molecules/avatar";
+import CommentList from "@/components/molecules/comments";
 import PostComment from "@/components/molecules/post-comment";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/organisms/card";
 import { currentProfile } from "@/lib/current-profile";
@@ -54,12 +55,13 @@ export default async function PostIdPage({ params }: PostIdPageProps) {
           <p>{post.content}</p>
         </CardContent>
         <Separator className="mb-4" />
-        <CardFooter className="flex flex-col items-start">
+        <CardFooter className="flex flex-col items-start space-y-4">
           <p className="font-bold text-2xl">Top comments</p>
           <PostComment postId={post.id} profile={profile} />
+          <CommentList postId={post.id} />
         </CardFooter>
       </Card>
-      <div className="flex flex-col min-w-72 space-y-3">
+      <div className="flex flex-col min-w-72 space-y-3 max-w-96">
         <Card>
           <CardHeader>
             <CardTitle>{post.author.name}</CardTitle>
