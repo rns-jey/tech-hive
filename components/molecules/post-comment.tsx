@@ -11,6 +11,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 
+import qs from "query-string";
+import { Form, FormField, FormItem } from "../organisms/form";
+import axios from "axios";
+import { db } from "@/lib/db";
+
 interface PostCommentProps {
   postId: string;
   profile: {
@@ -38,6 +43,17 @@ export default function PostComment({ postId, profile }: PostCommentProps) {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
+      const url = qs.stringifyUrl({
+        url: "/api/comments",
+        query: {
+          postId: postId,
+        },
+      });
+
+      await axios.post(url, values);
+
+      form.reset();
+      router.refresh();
     } catch (error) {
       console.error(error);
     }
@@ -49,9 +65,20 @@ export default function PostComment({ postId, profile }: PostCommentProps) {
         <AvatarImage src={profile?.imageUrl} alt={profile?.name} />
         <AvatarFallback>CN</AvatarFallback>
       </Avatar>
-      <div className="flex-1 space-y-2">
-        <Textarea />
-        <Button>Submit</Button>
+      <div className="flex-1">
+        <Form {...form}>
+          <form className="space-y-2" onSubmit={form.handleSubmit(onSubmit)}>
+            <FormItem>
+              <FormField
+                control={form.control}
+                name="content"
+                render={({ field }) => <Textarea disabled={isLoading} {...field} placeholder="Add to the discussion" />}
+              />
+            </FormItem>
+
+            <Button disabled={isLoading}>Submit</Button>
+          </form>
+        </Form>
       </div>
     </div>
   );
