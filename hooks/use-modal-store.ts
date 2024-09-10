@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-export type ModalType = "deleteComment";
+export type ModalType = "authenticate";
 
 interface ModalStore {
   type: ModalType | null;
