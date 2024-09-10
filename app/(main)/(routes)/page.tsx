@@ -131,9 +131,9 @@ export default async function Home() {
             </CardHeader>
             <CardContent>{/* <p>{post.tags.join(" ")}</p> */}</CardContent>
             <CardFooter className="w-full flex gap-1">
-              <Button>{post.reactions} reactions</Button>
+              <Button>reactions</Button>
               <Button>Add Comment</Button>
-              <p className="ml-auto">{post.readTime}</p>
+              <p className="ml-auto"></p>
             </CardFooter>
           </Card>
         ))}
