@@ -84,7 +84,9 @@ export default async function PostIdPage({ params }: PostIdPageProps) {
             {authorPosts.map((post) => (
               <Fragment key={post.id}>
                 <Separator />
-                <p className="my-4">{post.title}</p>
+                <p className="my-4 hover:text-blue-700">
+                  <a href={`/posts/${post.id}`}>{post.title}</a>
+                </p>
               </Fragment>
             ))}
           </CardContent>

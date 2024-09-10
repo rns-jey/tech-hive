@@ -126,7 +126,9 @@ export default async function Home() {
               <CardDescription className="flex flex-col">{post.author.name}</CardDescription>
               <CardDescription className="flex flex-col">{format(new Date(post.createdAt), "MMM d")}</CardDescription>
               <CardTitle>
-                <a href={`/posts/${post.id}`}>{post.title}</a>
+                <p className="hover:text-blue-700">
+                  <a href={`/posts/${post.id}`}>{post.title}</a>
+                </p>
               </CardTitle>
             </CardHeader>
             <CardContent>{/* <p>{post.tags.join(" ")}</p> */}</CardContent>
