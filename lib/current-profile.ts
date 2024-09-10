@@ -4,7 +4,7 @@ import { db } from "./db";
 export async function currentProfile() {
   const user = await currentUser();
 
-  if (!user) return;
+  if (!user) return null;
 
   const profile = await db.profile.findUnique({
     where: {
