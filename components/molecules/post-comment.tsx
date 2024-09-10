@@ -14,7 +14,7 @@ import { useRouter } from "next/navigation";
 import qs from "query-string";
 import { Form, FormField, FormItem } from "../organisms/form";
 import axios from "axios";
-import { db } from "@/lib/db";
+import { useModal } from "@/hooks/use-modal-store";
 
 interface PostCommentProps {
   postId: string;
@@ -31,6 +31,8 @@ const formSchema = z.object({
 });
 
 export default function PostComment({ postId, profile }: PostCommentProps) {
+  const { onOpen } = useModal();
+
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -72,7 +74,14 @@ export default function PostComment({ postId, profile }: PostCommentProps) {
               <FormField
                 control={form.control}
                 name="content"
-                render={({ field }) => <Textarea disabled={isLoading} {...field} placeholder="Add to the discussion" />}
+                render={({ field }) => (
+                  <Textarea
+                    disabled={isLoading}
+                    {...field}
+                    placeholder="Add to the discussion"
+                    onClick={!profile ? () => onOpen("authenticate") : undefined}
+                  />
+                )}
               />
             </FormItem>
 

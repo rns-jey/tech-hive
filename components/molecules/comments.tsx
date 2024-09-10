@@ -24,7 +24,6 @@ export default async function CommentList({ postId }: CommentListProps) {
             <AvatarFallback>CN</AvatarFallback>
           </Avatar>
           <div className="flex flex-col min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm space-y-2">
-            {" "}
             <div className="flex flex-col">
               <h3 className=" font-bold">{comment.commenter.name}</h3>
               <p className="text-xs">{format(new Date(comment.commenter.createdAt), "MMM d, yyyy")}</p>
