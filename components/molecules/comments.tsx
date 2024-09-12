@@ -3,6 +3,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "./avatar";
 import { format } from "date-fns";
 import { EllipsisIcon } from "lucide-react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./dropdown-menu";
+import Link from "next/link";
 
 interface CommentListProps {
   postId: string;
@@ -39,7 +40,9 @@ export default async function CommentList({ postId }: CommentListProps) {
                 <DropdownMenuItem>Copy link</DropdownMenuItem>
                 <DropdownMenuItem>Settings</DropdownMenuItem>
                 <DropdownMenuItem>Report abuse</DropdownMenuItem>
-                <DropdownMenuItem>Edit</DropdownMenuItem>
+                <Link href={`${postId}/comments/${comment.id}/edit`}>
+                  <DropdownMenuItem>Edit</DropdownMenuItem>
+                </Link>
                 <DropdownMenuItem>Delete</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
