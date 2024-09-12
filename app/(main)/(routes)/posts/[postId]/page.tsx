@@ -58,7 +58,7 @@ export default async function PostIdPage({ params }: PostIdPageProps) {
         <CardFooter className="flex flex-col items-start space-y-4">
           <p className="font-bold text-2xl">Top comments</p>
           <PostComment postId={post.id} profile={profile} />
-          <CommentList postId={post.id} />
+          <CommentList postId={post.id} profile={profile} />
         </CardFooter>
       </Card>
       <div className="flex flex-col min-w-72 space-y-3 max-w-96">

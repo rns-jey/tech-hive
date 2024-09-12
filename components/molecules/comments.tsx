@@ -4,12 +4,14 @@ import { format } from "date-fns";
 import { EllipsisIcon } from "lucide-react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./dropdown-menu";
 import Link from "next/link";
+import { Profile } from "@prisma/client";
 
 interface CommentListProps {
   postId: string;
+  profile: Profile | null;
 }
 
-export default async function CommentList({ postId }: CommentListProps) {
+export default async function CommentList({ postId, profile }: CommentListProps) {
   const comments = await db.comment.findMany({
     where: {
       postId,
@@ -38,12 +40,21 @@ export default async function CommentList({ postId }: CommentListProps) {
               </DropdownMenuTrigger>
               <DropdownMenuContent>
                 <DropdownMenuItem>Copy link</DropdownMenuItem>
-                <DropdownMenuItem>Settings</DropdownMenuItem>
                 <DropdownMenuItem>Report abuse</DropdownMenuItem>
-                <Link href={`${postId}/comments/${comment.id}/edit`}>
-                  <DropdownMenuItem>Edit</DropdownMenuItem>
-                </Link>
-                <DropdownMenuItem>Delete</DropdownMenuItem>
+
+                {profile && (
+                  <>
+                    <DropdownMenuItem>Settings</DropdownMenuItem>
+                    {profile.id === comment.commenter.id && (
+                      <>
+                        <Link href={`${postId}/comments/${comment.id}/edit`}>
+                          <DropdownMenuItem>Edit</DropdownMenuItem>
+                        </Link>
+                        <DropdownMenuItem>Delete</DropdownMenuItem>
+                      </>
+                    )}
+                  </>
+                )}
               </DropdownMenuContent>
             </DropdownMenu>
           </div>

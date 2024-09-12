@@ -17,12 +17,12 @@ export default async function EditCommentPage({ params }: EditCommentPageProps) 
   }
 
   const comment = await db.comment.findUnique({
-    where: { id: params.commentId },
+    where: { id: params.commentId, commenter: profile },
     include: { commenter: true },
   });
 
   if (!comment) {
-    return;
+    return notFound();
   }
 
   return <EditComment profile={profile} comment={comment} />;
