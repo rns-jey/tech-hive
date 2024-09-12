@@ -42,17 +42,13 @@ export default async function CommentList({ postId, profile }: CommentListProps)
                 <DropdownMenuItem>Copy link</DropdownMenuItem>
                 <DropdownMenuItem>Report abuse</DropdownMenuItem>
 
-                {profile && (
+                {profile?.id === comment.commenter.id && (
                   <>
                     <DropdownMenuItem>Settings</DropdownMenuItem>
-                    {profile.id === comment.commenter.id && (
-                      <>
-                        <Link href={`${postId}/comments/${comment.id}/edit`}>
-                          <DropdownMenuItem>Edit</DropdownMenuItem>
-                        </Link>
-                        <DropdownMenuItem>Delete</DropdownMenuItem>
-                      </>
-                    )}
+                    <Link href={`${postId}/comments/${comment.id}/edit`}>
+                      <DropdownMenuItem>Edit</DropdownMenuItem>
+                    </Link>
+                    <DropdownMenuItem>Delete</DropdownMenuItem>
                   </>
                 )}
               </DropdownMenuContent>
