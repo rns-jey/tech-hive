@@ -1,7 +1,7 @@
 import { Button } from "@/components/atoms/button";
 import { Separator } from "@/components/atoms/separator";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/molecules/avatar";
-import CommentList from "@/components/molecules/comments";
+import CommentList from "@/components/molecules/comment-list";
 import PostComment from "@/components/molecules/post-comment";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/organisms/card";
 import { currentProfile } from "@/lib/current-profile";

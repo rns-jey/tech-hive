@@ -133,8 +133,8 @@ export default async function Home() {
             </CardHeader>
             <CardContent>{/* <p>{post.tags.join(" ")}</p> */}</CardContent>
             <CardFooter className="w-full flex gap-1">
-              <Button>reactions</Button>
-              <Button>Add Comment</Button>
+              <Button variant="ghost">reactions</Button>
+              <Button variant="ghost">Add Comment</Button>
               <p className="ml-auto"></p>
             </CardFooter>
           </Card>
